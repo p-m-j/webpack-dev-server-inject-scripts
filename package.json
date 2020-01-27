@@ -1,0 +1,21 @@
+{
+  "name": "webpack-dev-server-inject-scripts",
+  "version": "0.1.0",
+  "description": "Injects scripts into html body for proxied requests",
+  "main": "index.js",
+  "author": "Paul Johnson (https://github.com/rustybox)",
+  "license": "MIT",
+  "keywords": [
+    "webpack",
+    "webpack-dev-server",
+    "middleware"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rustybox/webpack-dev-server-inject-scripts.git"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "express-interceptor": "^1.2.0"
+  }
+}
