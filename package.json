@@ -1,0 +1,30 @@
+{
+  "name": "webpack-dev-server-inject-scripts",
+  "version": "0.2.2",
+  "description": "Injects scripts into html body for proxied requests",
+  "main": "src/index.js",
+  "author": "Paul Johnson (https://github.com/p-m-j)",
+  "license": "MIT",
+  "keywords": [
+    "webpack",
+    "webpack-dev-server",
+    "middleware",
+    "umbraco",
+    "wordpress",
+    "CMS"
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p-m-j/webpack-dev-server-inject-scripts.git"
+  },
+  "dependencies": {
+    "tamper": "^1.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.3.1"
+  }
+}

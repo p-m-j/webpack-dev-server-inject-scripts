@@ -1,0 +1,17 @@
+{
+  "name": "webpack-dev-server-inject-scripts-example",
+  "version": "0.0.0",
+  "description": "demo the point of this thing",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack serve"
+  },
+  "dependencies": {
+    "css-loader": "^5.1.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.24.4",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-dev-server-inject-scripts": "file:.."
+  }
+}
