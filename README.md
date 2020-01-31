@@ -4,8 +4,8 @@ webpack-dev-server is amazing when you're working on a SPA but it can be a pain 
 when you want to use it with a traditional backend application that serves markup
 instead of json, for example, a CMS that isn't headless.
 
-Which files do I need to reference in my master layout / template?
-What happens if I add a new entry or rename one of the output files in webpack config?
+- Which files do I need to reference in my master layout / template?
+- What happens if I add a new entry or rename one of the output files in webpack config?
 
 When running a production build things are easy, you can point HtmlWebpackPlugin at your layout
 files and it will happily inject the necessary script and link elements and output a file you can deploy.
@@ -26,7 +26,7 @@ npm i --save-dev webpack-dev-server-inject-scripts
 Add the following to dev webpack config
 
 ```js
-const InjectScripts = require("webpack-dev-server-inject-scripts");
+const injectScripts = require("webpack-dev-server-inject-scripts");
 
 ...
 
@@ -39,14 +39,19 @@ devServer: {
     "/": "http://localhost:1234" // Your backend application here
   },
   before: function(app, server, compiler) {
-      app.use(
-        new InjectScripts(compiler, {
-          ignoredPaths: [/\/umbraco/, /\/wp-admin/] // Paths to ignore
-        }).middleware()
-      );
+    app.use(injectScripts(compiler));
   }
 }
 
+```
+
+The middleware function can take an options argument for additional configuration
+
+```js
+const options = {
+  ignoredPaths: [/\/umbraco/, /\/wp-admin/]
+};
+app.use(injectScripts(compiler, options));
 ```
 
 - run backend application

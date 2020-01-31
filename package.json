@@ -1,6 +1,6 @@
 {
   "name": "webpack-dev-server-inject-scripts",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Injects scripts into html body for proxied requests",
   "main": "src/index.js",
   "author": "Paul Johnson (https://github.com/rustybox)",
