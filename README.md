@@ -31,31 +31,40 @@ const injectScripts = require("webpack-dev-server-inject-scripts");
 ...
 
 devServer: {
-  index: "",
   port: 8080,
   hot: true,
   historyApiFallback: true,
+  devMiddleware: {
+    index: "",
+  },
   proxy: {
     "/": {
-      target: "http://localhost:1234", // Your backend application here
-      changeOrigin: true // play nice with upstream https
+      target: "http://localhost:65535", // Your backend application here
+      changeOrigin: true, // play nice with upstream https
     }
   },
-  before: function(app, server, compiler) {
-    app.use(injectScripts(compiler));
-  }
+  setupMiddlewares: (middlewares, devServer) => {
+    if (!devServer) {
+      throw new Error('webpack-dev-server is not defined');
+    }
+
+    // Optional options
+    const options = { 
+      ignoredPaths: [/\/ignored, /\/wp-admin/]
+    };
+
+    middlewares.unshift({
+      name: 'webpack-dev-server-inject-scripts',
+      middleware: injectScripts(devServer, options)
+    });
+
+    return middlewares;
+  },
 }
 
 ```
 
-The middleware function can take an options argument for additional configuration
-
-```js
-const options = {
-  ignoredPaths: [/\/umbraco/, /\/wp-admin/]
-};
-app.use(injectScripts(compiler, options));
-```
+## Usage
 
 - run backend application
 - run webpack-dev-server
