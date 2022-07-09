@@ -1,6 +1,6 @@
 {
   "name": "webpack-dev-server-inject-scripts",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Injects scripts into html body for proxied requests",
   "main": "src/index.js",
   "author": "Paul Johnson (https://github.com/p-m-j)",
@@ -21,7 +21,7 @@
     "url": "https://github.com/p-m-j/webpack-dev-server-inject-scripts.git"
   },
   "dependencies": {
-    "tamper": "^1.1.0"
+    "modify-response-middleware": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

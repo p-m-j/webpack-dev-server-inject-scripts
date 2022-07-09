@@ -1,6 +1,7 @@
-const path = require("path");
+// @ts-check
 const injectScripts = require("webpack-dev-server-inject-scripts");
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   mode: 'development',
   entry: {
@@ -16,17 +17,28 @@ module.exports = {
     ],
   },
   devServer: {
-    index: "",
     port: 8080,
     hot: true,
+    devMiddleware: {
+      index: "",
+    },
     proxy: {
       "/": {
-        target: "https://www.ft.com/", // Your backend application here
-        changeOrigin: true // play nice with upstream https
+        target: "http://localhost:65535", // Your backend application here
+        changeOrigin: true, // play nice with upstream https
       }
     },
-    before: function (app, server, compiler) {
-      app.use(injectScripts(compiler));
-    }
+    setupMiddlewares: (middlewares, devServer) => {
+      if (!devServer) {
+        throw new Error('webpack-dev-server is not defined');
+      }
+
+      middlewares.unshift({
+        name: 'webpack-dev-server-inject-scripts',
+        middleware: injectScripts(devServer, {ignoredPaths: [/\/ignored/]})
+      });
+
+      return middlewares;
+    },
   }
 };
